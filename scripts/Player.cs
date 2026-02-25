@@ -71,7 +71,7 @@ public partial class Player : CharacterBody2D
 
 	private void _on_weapon_slash_animation_finished()
 	{
-		Console.WriteLine("Slashed!");
+		//Console.WriteLine("Slashed!");
 		animatedSprite_weaponSlash.Animation = "idle";
 	}
 }
