@@ -2,6 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://dhjb8cpgy8o4j" path="res://textures/UI/PA_EnemiesLeft.png" id="1_c4vmg"]
 [ext_resource type="Script" uid="uid://bkun1btu47wlc" path="res://scripts/Hud.cs" id="1_rd3kb"]
+[ext_resource type="Texture2D" uid="uid://7po0xajyijrm" path="res://textures/programmerArt/minimap.png" id="3_y5tme"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_18exe"]
+texture = ExtResource("3_y5tme")
+0:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0jeyp"]
+sources/0 = SubResource("TileSetAtlasSource_18exe")
 
 [node name="HUD" type="Control" unique_id=128909635]
 layout_mode = 3
@@ -42,5 +52,6 @@ offset_left = 896.0
 offset_right = 1152.0
 offset_bottom = 256.0
 
-[node name="MapTextureRect" type="Node2D" parent="MapCenterContainer" unique_id=1916121844]
-position = Vector2(128, 128)
+[node name="TileMapLayer" type="TileMapLayer" parent="MapCenterContainer" unique_id=253969346]
+scale = Vector2(2, 2)
+tile_set = SubResource("TileSet_0jeyp")

@@ -1,5 +1,7 @@
 using Godot;
+using Godot.Collections;
 using System;
+using System.Linq;
 
 public partial class Player : Character
 {
@@ -42,16 +44,13 @@ public partial class Player : Character
 	}
 
 
-	public async void SomeFunction()
+	public void _on_dungeon_generator_finished_generation(Array<bool> godotGrid, int x, int y, int height)
 	{
-    	//await ToSignal(timer, Timer.SignalName.Timeout);
-	}
-
-	public void _on_dungeon_generator_finished_generation(Node2D MapRoot)
-	{
-
+		var grid = godotGrid.ToArray<bool>();
+		Console.WriteLine("HRAC MA NEJAKY SRANDY S MINIMAPOU");
 		Hud hudnode = GetNode<Hud>("CanvasLayer//HUD");
-        hudnode.GenerateMinimap(MapRoot);
+        hudnode.GenerateMinimap(grid, x, y, height);
+		
 		/*
 		TextureRect mapTextureRect = GetNode<TextureRect>("MapTextureRect");
 

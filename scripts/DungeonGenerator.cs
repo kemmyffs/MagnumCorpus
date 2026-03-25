@@ -132,10 +132,11 @@ public partial class DungeonGenerator : Node2D
 
 
 
-	
+
 
 using Godot;
 using Godot.NativeInterop;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -146,22 +147,28 @@ public partial class DungeonGenerator : Node2D
     [Export] int NumberOfRooms;
     [Export] public PackedScene RoomMapIconPrefab;
     [Export] public PackedScene RoomPrefab;
-    [Export] private int RoomOffset = 40;
+    [Export] public int roomTileSize = 16;
+    [Export] private int RoomOffset = 16 * 16;
 
-    [Signal] public delegate void FinishedGenerationEventHandler(Node2D root);
+
+    [Signal] public delegate void FinishedGenerationEventHandler(Array<bool> grid, int x, int y, int height);
+
+    //[Signal] public delegate void FinishedGenerationEventHandler(RoomPrefab[,] a);
 
     private Node2D MapRoot;
-    private RoomMapIcon[,] RoomGrid;
+    private RoomMapIcon[,] RoomGrid_Icons;
+    private RoomPrefab[,] RoomGrid_Prefabs;
 
     private Random rng = new Random();
 
     public override void _Ready()
     {
         MapRoot = GetNode<Node2D>("MapRoot");
-        RoomGrid = new RoomMapIcon[WorldSize.X, WorldSize.Y];
+        RoomGrid_Icons = new RoomMapIcon[WorldSize.X, WorldSize.Y];
+        RoomGrid_Prefabs = new RoomPrefab[WorldSize.X, WorldSize.Y];
 
         GenerateDungeon();
-        EmitSignal(SignalName.FinishedGeneration, MapRoot);
+        EmitFlattenedGrid(RoomGrid_Icons);
 
     }
 
@@ -199,7 +206,7 @@ public partial class DungeonGenerator : Node2D
                 Vector2I newPos = baseRoom + dir;
 
                 if (!IsInside(newPos)) continue;
-                if (RoomGrid[newPos.X, newPos.Y] != null) continue;
+                if (RoomGrid_Icons[newPos.X, newPos.Y] != null) continue;
 
                 // 🔥 Prevent blobs (IMPORTANT)
                 if (CountNeighbors(newPos) > 1) continue;
@@ -223,18 +230,23 @@ public partial class DungeonGenerator : Node2D
 
     private void PlaceRoom(Vector2I pos, bool isStart)
     {
+        //ICONS
         RoomMapIcon newRoom = RoomMapIconPrefab.Instantiate<RoomMapIcon>();
-        RoomGrid[pos.X, pos.Y] = newRoom;
-        MapRoot.AddChild(newRoom);
-
+        RoomGrid_Icons[pos.X, pos.Y] = newRoom;
         newRoom.Position = new Vector2(pos.X * RoomOffset, pos.Y * RoomOffset);
 
-        /*
         if (isStart)
             newRoom.SetMapIconColor(newRoom.EnterColor);
         else
             newRoom.SetMapIconColor(newRoom.NormalColor);
-        */
+
+        //PREFABS
+        RoomPrefab newRoomPrefab = RoomPrefab.Instantiate<RoomPrefab>();
+        RoomGrid_Prefabs[pos.X, pos.Y] = newRoomPrefab;
+        newRoomPrefab.Position = new Vector2(pos.X * RoomOffset, pos.Y * RoomOffset);
+        MapRoot.AddChild(newRoomPrefab);
+
+
     }
 
     private bool IsInside(Vector2I pos)
@@ -259,7 +271,7 @@ public partial class DungeonGenerator : Node2D
         {
             Vector2I check = pos + dir;
 
-            if (IsInside(check) && RoomGrid[check.X, check.Y] != null)
+            if (IsInside(check) && RoomGrid_Icons[check.X, check.Y] != null)
                 count++;
         }
 
@@ -272,21 +284,51 @@ public partial class DungeonGenerator : Node2D
         {
             for (int y = 0; y < WorldSize.Y; y++)
             {
-                var currentRoom = RoomGrid[x, y];
+                var currentRoom = RoomGrid_Icons[x, y];
                 if (currentRoom == null) continue;
 
                 // Right
-                if (x + 1 < WorldSize.X && RoomGrid[x + 1, y] != null)
+                if (x + 1 < WorldSize.X && RoomGrid_Icons[x + 1, y] != null)
                 {
                     currentRoom.showBridge(true);
                 }
 
                 // Down
-                if (y + 1 < WorldSize.Y && RoomGrid[x, y + 1] != null)
+                if (y + 1 < WorldSize.Y && RoomGrid_Icons[x, y + 1] != null)
                 {
                     currentRoom.showBridge(false);
                 }
             }
         }
     }
+
+
+    void EmitFlattenedGrid(RoomMapIcon[,] grid)
+    {
+        int width = grid.GetLength(0);
+        int height = grid.GetLength(1);
+
+        var result = new bool[width * height];
+        int x = 0;
+        int y = 0;
+        for (x = 0; x < width; x++)
+        {
+            for (y = 0; y < height; y++)
+            {
+                if (grid[x,y] == null)
+                {
+                    result[x * height + y] = true;
+                } else
+                {
+                    result[x * height + y] = false;
+                }
+            }
+        }
+        Console.WriteLine("PRE-SIGNAL");
+        var godotResult = new Array<bool>(result);
+        EmitSignal(SignalName.FinishedGeneration, godotResult, x, y, height);
+        Console.WriteLine("POST-SIGNAL");
+
+    }
+
 }
