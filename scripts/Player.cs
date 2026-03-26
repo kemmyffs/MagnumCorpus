@@ -5,16 +5,8 @@ using System.Linq;
 
 public partial class Player : Character
 {
-	private MoveComponent _move;
 	public Vector2 LastDirection { get; private set; } = Vector2.Right;
-	private CollisionShape2D MoveCollisionShape;
 	[Export] public float ChargeDelay = 5.0f;
-
-	public override void _Ready()
-	{
-		_move = GetNode<MoveComponent>("MoveComponent");
-		MoveCollisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
-	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -23,18 +15,18 @@ public partial class Player : Character
 			"plr_up", "plr_down"
 		);
 
-		_move.DesiredDirection = direction;
+		_moveComponent.DesiredDirection = direction;
 
 		if (direction != Vector2.Zero)
 			LastDirection = direction;
 
 		if (Input.IsActionPressed("plr_attack"))
-			_move.StartCharge();
+			_moveComponent.StartCharge();
 
 		if (Input.IsActionJustReleased("plr_attack"))
 		{
-			_move.StopCharge();
-			_move.Dash(LastDirection);
+			_moveComponent.StopCharge();
+			_moveComponent.Dash(LastDirection);
 		}
 		
 		if (Input.IsKeyPressed(Key.Escape))
@@ -47,7 +39,6 @@ public partial class Player : Character
 	public void _on_dungeon_generator_finished_generation(Array<bool> godotGrid, int x, int y, int height)
 	{
 		var grid = godotGrid.ToArray<bool>();
-		Console.WriteLine("HRAC MA NEJAKY SRANDY S MINIMAPOU");
 		Hud hudnode = GetNode<Hud>("CanvasLayer//HUD");
         hudnode.GenerateMinimap(grid, x, y, height);
 		

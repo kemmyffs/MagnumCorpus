@@ -1,18 +1,37 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Threading.Tasks;
 
 public partial class Hud : Control
 {
 
 	public TileMapLayer tileMapLayer;
+	private Label HPlabel;
+	private Label EnemiesLeftLabel;
 	private bool[,] roomMapIconGrid;
+
+	private Character PlayerParent;
 
 	public override void _Ready()
 	{
 		tileMapLayer = GetNode<TileMapLayer>("MapCenterContainer//TileMapLayer");
+		HPlabel = GetNode<Label>("HPlabel");
+		EnemiesLeftLabel = GetNode<Label>("TextureRect//CenterContainer//EnemiesLeftLabel");
+		PlayerParent = GetParent<CanvasLayer>().GetParent<Character>();		
+
+		updateHUD();
 	}
 
+
+	public async void updateHUD()
+	{
+		await ToSignal(PlayerParent, SignalName.Ready);
+		Console.WriteLine(PlayerParent._healthComponent.CurrentHealth);
+		HPlabel.Text = PlayerParent._healthComponent.CurrentHealth.ToString();
+		
+
+	}
 	public void GenerateMinimap(bool[] grid, int x, int y, int height)
 	{
 		roomMapIconGrid = Reconstruct(grid, x, y, height);
@@ -24,7 +43,6 @@ public partial class Hud : Control
 				if (!roomMapIconGrid[i, j])
 				{
 					tileMapLayer.SetCell(new Vector2I(i, j), 0, new Vector2I(0, 0), 0);
-            		Console.WriteLine($"Set tile at {i}, {j}");
 				}
 			}
 		}

@@ -324,10 +324,8 @@ public partial class DungeonGenerator : Node2D
                 }
             }
         }
-        Console.WriteLine("PRE-SIGNAL");
         var godotResult = new Array<bool>(result);
         EmitSignal(SignalName.FinishedGeneration, godotResult, x, y, height);
-        Console.WriteLine("POST-SIGNAL");
 
     }
 

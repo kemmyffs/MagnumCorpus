@@ -6,7 +6,7 @@ public partial class HealthComponent : Node2D
 
 	private Character _parent;
 	public int MaxHealth;
-	public int CurrentHealth;
+	public int CurrentHealth {get; set;}
 	
 	public override void _Ready()
 	{
