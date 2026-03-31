@@ -11,6 +11,7 @@ public partial class MoveComponent : Node
 	[Export] public float DashDecay = 750; // higher -> stops faster
 	[Export] public float Acceleration = 2000f;
 	[Export] public float Friction = 2000f;
+	[Export] public float ChargeFriction = 300f;
 
 	private Vector2 _dashVelocity = Vector2.Zero;
 
@@ -39,7 +40,7 @@ public partial class MoveComponent : Node
 		{
 			velocity = velocity.MoveToward(
 				Vector2.Zero,
-				Friction * d
+				ChargeFriction * d
 			);
 		}
 		else

@@ -11,11 +11,15 @@ WorldSize = Vector2i(5, 5)
 NumberOfRooms = 10
 RoomMapIconPrefab = ExtResource("2_u0h3c")
 RoomPrefab = ExtResource("2_1i4yp")
+roomTileCount = 32
+tileSizePx = 16
 
 [node name="MapRoot" type="Node2D" parent="." unique_id=41446376]
 unique_name_in_owner = true
 
 [node name="Player" parent="." unique_id=1962636832 instance=ExtResource("3_s1qmf")]
-position = Vector2(288, 168)
+position = Vector2(1032, 456)
+collision_layer = 17
+collision_mask = 17
 
 [connection signal="FinishedGeneration" from="." to="Player" method="_on_dungeon_generator_finished_generation"]
