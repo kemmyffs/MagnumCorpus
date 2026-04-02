@@ -111,7 +111,7 @@ BaseSpeed = 150.0
 [node name="HUD" parent="CanvasLayer" unique_id=128909635 instance=ExtResource("3_bhqug")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1221219680]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(2, 2)
 process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true

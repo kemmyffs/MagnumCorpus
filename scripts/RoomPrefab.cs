@@ -21,13 +21,22 @@ public partial class RoomPrefab : Node2D
 
 	public void RandomizeFloor()
 	{
-		Random rnd = new Random();
+		Random rng = new Random();
 		for (int x = 0; x < FloorSize; x++)
 		{
 			for (int y = 0; y < FloorSize; y++)
 			{
-				TileMapBase.SetCell(new Vector2I(x, y), 0, new Vector2I(3, rnd.Next(0, 3)), 0);
-				//TileMapBase.SetCell(new Vector2I(x,y), 0, new Vector2I(3, 3), 0);
+				Vector2I tile = Vector2I.Zero;
+				tile.X = 3;
+				if(rng.NextDouble() < 0.8)
+				{
+					tile.Y = 0;
+				} else
+				{
+					tile.Y = rng.Next(1,3);
+				}
+
+				TileMapBase.SetCell(new Vector2I(x, y), 0, tile, 0);
 			}
 		}
 	}
@@ -73,10 +82,8 @@ public partial class RoomPrefab : Node2D
 			doorWidth = 1;
 			doorHeight = 4;
 		}
-
-		Vector2I tile;
-
-		/* 
+		/*
+			Vector2I tile;
 			if (open)
 			{
 				tile = new Vector2I(3, 0);
@@ -87,7 +94,13 @@ public partial class RoomPrefab : Node2D
 			}
 		*/
 
+		/*
+		Vector2I tile;
 		tile = open ? new Vector2I(3,0) : new Vector2I(0,0);
+		*/
+
+		Vector2I tile = Vector2I.Zero;
+		tile.X = open ? 3 : 0;
 
 		for (int x = 0; x < doorWidth; x++)
 		{
@@ -103,8 +116,8 @@ public partial class RoomPrefab : Node2D
 		//mosty jsou předem udělaný v každém roomPrefabu –> když přijde FALSE, SCHOVÁVÁM mosty a jen zavřu dveře
 		const int startX = 25;
 		const int lastX = 30;
-		const int startY = 10;
-		const int lastY = 14;
+		const int startY = 9;
+		const int lastY = 15;
 		if (!rightBridge)
 		{
 			//SCHOVAT pravy most a ZAVRIT DVERE

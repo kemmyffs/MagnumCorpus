@@ -14,13 +14,14 @@ public partial class DungeonGenerator : Node2D
     [Export] public int roomTileCount;
     [Export] public int tileSizePx;
     [Export] private int RoomOffset;
-
+    private Vector2I CenterRoomCoords;
 
     [Signal] public delegate void FinishedGenerationEventHandler(Array<bool> grid, int x, int y, int height);
 
     private Node2D MapRoot;
     private RoomMapIcon[,] RoomGrid_Icons;
     private RoomPrefab[,] RoomGrid_Prefabs;
+    private Character PlayerNode;
 
     private Random rng = new Random();
 
@@ -29,10 +30,13 @@ public partial class DungeonGenerator : Node2D
         MapRoot = GetNode<Node2D>("MapRoot");
         RoomGrid_Icons = new RoomMapIcon[WorldSize.X, WorldSize.Y];
         RoomGrid_Prefabs = new RoomPrefab[WorldSize.X, WorldSize.Y];
+        PlayerNode = GetNode<Character>("Player");
+        CenterRoomCoords = new Vector2I(WorldSize.X / 2, WorldSize.Y / 2);
 
         GenerateDungeonMap();
         EmitFlattenedGrid(RoomGrid_Icons);
         setFloorColor(Colors.Green);
+
 
     }
 
@@ -41,11 +45,12 @@ public partial class DungeonGenerator : Node2D
         List<Vector2I> placedRooms = new();
         List<Vector2I> frontier = new();
 
-        Vector2I center = new(WorldSize.X / 2, WorldSize.Y / 2);
+        PlaceRoom(CenterRoomCoords);
+        placedRooms.Add(CenterRoomCoords);
+        Vector2 roomV2 = placedRooms.First();
+        frontier.Add(CenterRoomCoords);
 
-        PlaceRoom(center, true);
-        placedRooms.Add(center);
-        frontier.Add(center);
+        
 
         while (placedRooms.Count < NumberOfRooms && frontier.Count > 0)
         {
@@ -75,7 +80,7 @@ public partial class DungeonGenerator : Node2D
                 // Prevent blobs (IMPORTANT)
                 if (CountNeighbors(newPos) > 1) continue;
 
-                PlaceRoom(newPos, false);
+                PlaceRoom(newPos);
 
                 placedRooms.Add(newPos);
                 frontier.Add(newPos);
@@ -88,11 +93,14 @@ public partial class DungeonGenerator : Node2D
             if (!placed)
                 frontier.Remove(baseRoom);
         }
-
+        int pos = (CenterRoomCoords.X * tileSizePx * roomTileCount) + ((tileSizePx * roomTileCount)/2);
+        PlayerNode.GlobalPosition = new Vector2(pos, pos);
         GenerateBridges();
+
+
     }
 
-    private void PlaceRoom(Vector2I pos, bool isStart)
+    private void PlaceRoom(Vector2I pos)
     {
         //ICONS
         RoomMapIcon newRoom = RoomMapIconPrefab.Instantiate<RoomMapIcon>();
@@ -112,8 +120,8 @@ public partial class DungeonGenerator : Node2D
         newRoomPrefab.Position = new Vector2(pos.X * (RoomOffset + TrueRoomSize), pos.Y * (RoomOffset + TrueRoomSize));
         MapRoot.AddChild(newRoomPrefab);
         newRoomPrefab.RandomizeFloor();
-        newRoomPrefab.SetDoor(Vector2.Up, false);
-        newRoomPrefab.SetDoor(Vector2.Left, false);
+        //newRoomPrefab.SetDoor(Vector2.Up, false);
+        //newRoomPrefab.SetDoor(Vector2.Left, false);
 
     }
 
@@ -156,19 +164,19 @@ public partial class DungeonGenerator : Node2D
                 var currentRoom = RoomGrid_Prefabs[x, y];
                 if (currentRoom == null) continue;
                 bool[] bridges_TopDownLeftRight = new bool[4];
-                
+
                 // Right
-                if (x + 1 < WorldSize.X && RoomGrid_Prefabs[x + 1, y] != null)  bridges_TopDownLeftRight[3] = true;
+                if (x + 1 < WorldSize.X && RoomGrid_Prefabs[x + 1, y] != null) bridges_TopDownLeftRight[3] = true;
                 // Left
-                if (x - 1 >= 0 && RoomGrid_Prefabs[x - 1, y] != null)           bridges_TopDownLeftRight[2] = true;
+                if (x - 1 >= 0 && RoomGrid_Prefabs[x - 1, y] != null) bridges_TopDownLeftRight[2] = true;
                 // Down
-                if (y + 1 < WorldSize.Y && RoomGrid_Prefabs[x, y + 1] != null)  bridges_TopDownLeftRight[1] = true;
+                if (y + 1 < WorldSize.Y && RoomGrid_Prefabs[x, y + 1] != null) bridges_TopDownLeftRight[1] = true;
                 // Up
-                if (y - 1 >= 0 && RoomGrid_Prefabs[x, y - 1] != null)           bridges_TopDownLeftRight[0] = true;
+                if (y - 1 >= 0 && RoomGrid_Prefabs[x, y - 1] != null) bridges_TopDownLeftRight[0] = true;
 
 
                 currentRoom.GenerateBridges(bridges_TopDownLeftRight[3], bridges_TopDownLeftRight[1]);
-                
+
                 currentRoom.SetDoor(Vector2.Up, bridges_TopDownLeftRight[0]);
                 currentRoom.SetDoor(Vector2.Down, bridges_TopDownLeftRight[1]);
                 currentRoom.SetDoor(Vector2.Left, bridges_TopDownLeftRight[2]);
@@ -233,4 +241,7 @@ public partial class DungeonGenerator : Node2D
     {
         MapRoot.Modulate = desiredColor;
     }
+
+
+    
 }
