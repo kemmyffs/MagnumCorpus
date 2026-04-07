@@ -28,6 +28,7 @@ hframes = 8
 vframes = 5
 
 [node name="HealthComponent" parent="." unique_id=1008080549 instance=ExtResource("3_hnwwm")]
+position = Vector2(0, 2)
 
 [node name="HurtBoxArea" type="Area2D" parent="." unique_id=223505805]
 

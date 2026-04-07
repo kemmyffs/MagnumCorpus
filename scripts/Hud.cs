@@ -1,25 +1,24 @@
 using Godot;
-using Godot.Collections;
 using System;
-using System.Threading.Tasks;
 
 public partial class Hud : Control
 {
 
 	public TileMapLayer tileMapLayer;
-	private Label HPlabel;
 	private Label EnemiesLeftLabel;
 	private bool[,] roomMapIconGrid;
 
 	private Character PlayerParent;
+	public TextureProgressBar HealthBar;
+	public TextureProgressBar SpecialBar;
 
 	public override void _Ready()
 	{
 		tileMapLayer = GetNode<TileMapLayer>("MapCenterContainer//TileMapLayer");
-		HPlabel = GetNode<Label>("HPlabel");
-		EnemiesLeftLabel = GetNode<Label>("TextureRect//CenterContainer//EnemiesLeftLabel");
+		EnemiesLeftLabel = GetNode<Label>("TextureRect//EnemiesLeftLabel");
 		PlayerParent = GetParent<CanvasLayer>().GetParent<Character>();		
-
+		HealthBar = GetNode<TextureProgressBar>("TextureRect//HealthBar"); //TODO
+		SpecialBar = GetNode<TextureProgressBar>("TextureRect//SpecialBar"); //TODO
 		updateHUD();
 	}
 
@@ -28,7 +27,6 @@ public partial class Hud : Control
 	{
 		await ToSignal(PlayerParent, SignalName.Ready);
 		Console.WriteLine(PlayerParent._healthComponent.CurrentHealth);
-		HPlabel.Text = PlayerParent._healthComponent.CurrentHealth.ToString();
 		
 
 	}
@@ -65,6 +63,5 @@ public partial class Hud : Control
 
 		return reconstructed;
 	}
-
 
 }

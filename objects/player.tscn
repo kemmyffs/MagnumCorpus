@@ -116,10 +116,10 @@ process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_left_margin = 0.25
-drag_top_margin = 0.25
-drag_right_margin = 0.25
-drag_bottom_margin = 0.25
+drag_left_margin = 0.15
+drag_top_margin = 0.15
+drag_right_margin = 0.15
+drag_bottom_margin = 0.15
 editor_draw_drag_margin = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1456656584]
@@ -129,7 +129,7 @@ hframes = 8
 [node name="WeaponSlash" type="AnimatedSprite2D" parent="." unique_id=2099038064]
 position = Vector2(20, 0)
 sprite_frames = SubResource("SpriteFrames_cvk82")
-animation = &"idle"
+animation = &"slashC"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=94244831]

@@ -1,6 +1,49 @@
 [gd_scene format=3 uid="uid://c4vu8ia4v14x1"]
 
 [ext_resource type="Script" uid="uid://ptsyftqkedoo" path="res://scripts/components/HealthComponent.cs" id="1_t2tvt"]
+[ext_resource type="Texture2D" uid="uid://byftc5blsemh0" path="res://textures/programmerArt/healthbar.png" id="2_tsl15"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsl15"]
+atlas = ExtResource("2_tsl15")
+region = Rect2(0, 0, 28, 0)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ly7h7"]
+load_path = "res://.godot/imported/healthbar.png-12ab45cd2da4d56479cad6362028130c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d07gh"]
+atlas = SubResource("CompressedTexture2D_ly7h7")
+region = Rect2(28, 2, 24, 3)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_awnif"]
+load_path = "res://.godot/imported/healthbar.png-12ab45cd2da4d56479cad6362028130c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8208"]
+atlas = SubResource("CompressedTexture2D_awnif")
+region = Rect2(28, 6, 24, 2)
 
 [node name="HealthComponent" type="Node2D" unique_id=1008080549]
 script = ExtResource("1_t2tvt")
+
+[node name="Background" type="TextureRect" parent="." unique_id=532802650]
+offset_left = -14.0
+offset_top = 13.0
+offset_right = 27.0
+offset_bottom = 35.0
+texture = SubResource("AtlasTexture_tsl15")
+stretch_mode = 2
+
+[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=515115747]
+offset_left = -12.0
+offset_top = 15.0
+offset_right = 28.0
+offset_bottom = 55.0
+value = 80.0
+texture_progress = SubResource("AtlasTexture_d07gh")
+
+[node name="SpecialBar" type="TextureProgressBar" parent="." unique_id=461186392]
+offset_left = -12.0
+offset_top = 19.0
+offset_right = 28.0
+offset_bottom = 59.0
+value = 50.0
+texture_progress = SubResource("AtlasTexture_m8208")

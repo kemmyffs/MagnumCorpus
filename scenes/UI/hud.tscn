@@ -1,8 +1,17 @@
 [gd_scene format=3 uid="uid://cinkpl0oj7otp"]
 
-[ext_resource type="Texture2D" uid="uid://dhjb8cpgy8o4j" path="res://textures/UI/PA_EnemiesLeft.png" id="1_c4vmg"]
 [ext_resource type="Script" uid="uid://bkun1btu47wlc" path="res://scripts/Hud.cs" id="1_rd3kb"]
+[ext_resource type="Texture2D" uid="uid://dwiqptgxq4xxu" path="res://textures/programmerArt/TopHud.png" id="2_y5tme"]
+[ext_resource type="Texture2D" uid="uid://01wkc5dtpo5r" path="res://textures/programmerArt/plrBars.png" id="3_18exe"]
 [ext_resource type="Texture2D" uid="uid://7po0xajyijrm" path="res://textures/programmerArt/minimap.png" id="3_y5tme"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jeyp"]
+atlas = ExtResource("3_18exe")
+region = Rect2(0, 0, 0, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18exe"]
+atlas = ExtResource("3_18exe")
+region = Rect2(0, 28, 0, 16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_18exe"]
 texture = ExtResource("3_y5tme")
@@ -22,35 +31,45 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rd3kb")
 
-[node name="HPlabel" type="Label" parent="." unique_id=1795192139]
-layout_mode = 0
-offset_right = 240.0
-offset_bottom = 80.0
-text = "Cau tvoje HP je:"
-
 [node name="TextureRect" type="TextureRect" parent="." unique_id=629346623]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 464.0
+offset_top = 16.0
 offset_right = 96.0
-offset_bottom = 544.0
-scale = Vector2(2, 2)
-texture = ExtResource("1_c4vmg")
+offset_bottom = 96.0
+texture = ExtResource("2_y5tme")
 
-[node name="CenterContainer" type="CenterContainer" parent="TextureRect" unique_id=743617482]
+[node name="EnemiesLeftLabel" type="Label" parent="TextureRect" unique_id=684202143]
 layout_mode = 0
-offset_right = 80.0
-offset_bottom = 80.0
-
-[node name="EnemiesLeftLabel" type="Label" parent="TextureRect/CenterContainer" unique_id=684202143]
-layout_mode = 2
+offset_left = 14.0
+offset_top = 28.0
+offset_right = 66.0
+offset_bottom = 51.0
 text = "10 / 10"
+
+[node name="HealthBar" type="TextureProgressBar" parent="TextureRect" unique_id=1697084545]
+layout_mode = 0
+offset_left = 67.0
+offset_right = 271.0
+offset_bottom = 24.0
+value = 80.0
+texture_progress = SubResource("AtlasTexture_0jeyp")
+
+[node name="SpecialBar" type="TextureProgressBar" parent="TextureRect" unique_id=1030876043]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 28.0
+offset_right = 271.0
+offset_bottom = 52.0
+value = 40.0
+texture_progress = SubResource("AtlasTexture_18exe")
 
 [node name="MapCenterContainer" type="CenterContainer" parent="." unique_id=2045795885]
 layout_mode = 0
-offset_left = 896.0
-offset_right = 1152.0
-offset_bottom = 256.0
+offset_left = 880.0
+offset_top = 16.0
+offset_right = 1136.0
+offset_bottom = 272.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="MapCenterContainer" unique_id=253969346]
 scale = Vector2(3, 3)

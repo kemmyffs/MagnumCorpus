@@ -20,10 +20,10 @@ public partial class Player : Character
 		if (direction != Vector2.Zero)
 			LastDirection = direction;
 
-		if (Input.IsActionPressed("plr_attack"))
+		if (Input.IsActionPressed("plr_charge"))
 			_moveComponent.StartCharge();
 
-		if (Input.IsActionJustReleased("plr_attack"))
+		if (Input.IsActionJustReleased("plr_charge"))
 		{
 			_moveComponent.StopCharge();
 			_moveComponent.Dash(LastDirection);
@@ -42,10 +42,17 @@ public partial class Player : Character
 		Hud hudnode = GetNode<Hud>("CanvasLayer//HUD");
         hudnode.GenerateMinimap(grid, x, y, height);
 		
-		/*
-		TextureRect mapTextureRect = GetNode<TextureRect>("MapTextureRect");
+		//TextureRect mapTextureRect = GetNode<TextureRect>("MapTextureRect");
+	}
 
-		*/
+	public TextureProgressBar GetHealthBar()
+	{
+		return GetNode<Hud>("CanvasLayer//HUD").HealthBar;
+	}
+
+	public TextureProgressBar GetSpecialbar()
+	{
+		return GetNode<Hud>("CanvasLayer//HUD").SpecialBar;
 	}
 
 }

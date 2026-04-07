@@ -5,7 +5,12 @@ using System;
 //TODO neni dobrej napad si pocet tilů roomky (bez zdí) automaticky vypocitavat? Mozna?
 //doors -1, 10-13
 
-
+// ----**** TO-DO ****----
+//	 
+//	*	Předělat generaci mostů a dveří s novými tiles
+//	*
+//
+// ----***************----
 public partial class RoomPrefab : Node2D
 {
 
