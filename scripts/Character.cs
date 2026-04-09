@@ -24,4 +24,9 @@ public partial class Character : CharacterBody2D
         MoveCollisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
     }
 
+    public virtual void Die()
+    {
+        QueueFree();
+    }
+
 }

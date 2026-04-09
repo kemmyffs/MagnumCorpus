@@ -6,7 +6,7 @@ public partial class MoveComponent : Node
 	private Character _parent;
 	private CollisionShape2D MoveCollisionShape;
 
-	[Export] public float BaseSpeed = 150;
+	public float BaseSpeed = 150;
 	[Export] public float DashForce = 200;
 	[Export] public float DashDecay = 750; // higher -> stops faster
 	[Export] public float Acceleration = 2000f;
@@ -73,6 +73,7 @@ public partial class MoveComponent : Node
 			);
 		}
 
+/*
 		if (_isDashing)
 		{
 			_parent.SetCollisionMaskValue(1, false);
@@ -87,6 +88,12 @@ public partial class MoveComponent : Node
 			_parent.SetCollisionLayerValue(1, true);
 			_parent.SetCollisionLayerValue(2, false);
 		}
+*/
+		_parent.SetCollisionMaskValue(1, !_isDashing);
+		_parent.SetCollisionMaskValue(2, _isDashing);
+		_parent.SetCollisionLayerValue(1, !_isDashing);
+		_parent.SetCollisionLayerValue(2, _isDashing);
+
 
 		//Smoothing transition between a dash move and a regular move
 		//so the player doesn't need to wait for the dash to end before he can move (which caused stops after dashes)

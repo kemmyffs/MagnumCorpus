@@ -120,7 +120,7 @@ public partial class DungeonGenerator : Node2D
         newRoomPrefab.Position = new Vector2(pos.X * (RoomOffset + TrueRoomSize), pos.Y * (RoomOffset + TrueRoomSize));
         MapRoot.AddChild(newRoomPrefab);
         newRoomPrefab.RandomizeFloor();
-        newRoomPrefab.GenerateEnemies(5);
+        newRoomPrefab.GenerateEnemies(1);
         //newRoomPrefab.SetDoor(Vector2.Up, false);
         //newRoomPrefab.SetDoor(Vector2.Left, false);
 

@@ -729,16 +729,10 @@ collision_mask = 17
 
 [node name="Enemy1" parent="Enemies" unique_id=899155493 instance=ExtResource("8_pw728")]
 position = Vector2(153, -44)
-collision_layer = 33
-collision_mask = 33
 MaxHealth = 20
 
 [node name="Enemy2" parent="Enemies" unique_id=270184058 instance=ExtResource("8_pw728")]
 position = Vector2(233, -115)
-collision_layer = 33
-collision_mask = 33
 
 [node name="Enemy3" parent="Enemies" unique_id=1341766381 instance=ExtResource("8_pw728")]
 position = Vector2(54, -125)
-collision_layer = 33
-collision_mask = 33

@@ -57,7 +57,7 @@ public partial class HealthComponent : Node2D
 	public void Damage(int dmg)
 	{
 		CurrentHealth -= dmg;
-		Console.WriteLine(CurrentHealth);
+		if(CurrentHealth <= 0) _parent.Die();
 		UpdateHealthBar();
 	}
 
@@ -78,8 +78,10 @@ public partial class HealthComponent : Node2D
 
 	private void OnAreaEntered(Area2D area)
 	{
+		
 		if(area.Name == "Hitbox")
 		{
+			if(area.GetParent().GetParent<Character>() == this.GetParent<Character>()) return;
 			Character attacker = area.GetParent().GetParent<Character>();
 			Damage(attacker._attackComponent.Damage);
 			

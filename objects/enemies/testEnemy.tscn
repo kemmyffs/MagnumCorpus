@@ -10,10 +10,12 @@
 height = 24.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=899155493]
-collision_layer = 17
-collision_mask = 17
+collision_layer = 33
+collision_mask = 33
 motion_mode = 1
 script = ExtResource("1_hnwwm")
+BaseSpeed = 20.0
+MaxHealth = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1092338224]
 position = Vector2(0, 4)
@@ -32,4 +34,3 @@ MaxHealth = 50
 [node name="MoveComponent" parent="." unique_id=1936515493 instance=ExtResource("2_71jmq")]
 
 [node name="AttackComponent" parent="." unique_id=977282940 instance=ExtResource("5_mroqh")]
-visible = false

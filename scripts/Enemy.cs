@@ -6,6 +6,11 @@ public partial class Enemy : Character
 {
 	private Character Target;
 
+    public override void _Ready()
+    {
+        base._Ready();
+    }
+
 	public override void _PhysicsProcess(double delta)
 	{
 		if(!IsInstanceValid(Target)) return;
