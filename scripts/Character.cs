@@ -3,8 +3,11 @@ using Godot;
 
 public partial class Character : CharacterBody2D
 {
-    [Export] public float BaseSpeed = 200f;
+    [ExportGroup("Health")]
     [Export] public int MaxHealth = 100;
+    [ExportGroup("Movement")]
+    [Export] public float BaseSpeed = 200f;
+    [Export] public int ChargesAmountInFullBar = 5;
     public MoveComponent _moveComponent;
     public HealthComponent _healthComponent;
     public AttackComponent _attackComponent;

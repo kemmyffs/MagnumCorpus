@@ -73,22 +73,6 @@ public partial class MoveComponent : Node
 			);
 		}
 
-/*
-		if (_isDashing)
-		{
-			_parent.SetCollisionMaskValue(1, false);
-			_parent.SetCollisionMaskValue(2, true);
-			_parent.SetCollisionLayerValue(1, false);
-			_parent.SetCollisionLayerValue(2, true);
-		}
-		else
-		{
-			_parent.SetCollisionMaskValue(1, true);
-			_parent.SetCollisionMaskValue(2, false);
-			_parent.SetCollisionLayerValue(1, true);
-			_parent.SetCollisionLayerValue(2, false);
-		}
-*/
 		_parent.SetCollisionMaskValue(1, !_isDashing);
 		_parent.SetCollisionMaskValue(2, _isDashing);
 		_parent.SetCollisionLayerValue(1, !_isDashing);
@@ -112,8 +96,14 @@ public partial class MoveComponent : Node
 	{
 		if (direction == Vector2.Zero)
 			return;
+		if (_parent._healthComponent.hasEnoughSpecial(_parent.ChargesAmountInFullBar))
+		{
+			Console.WriteLine("CHAAAAAARGE!!!");
+			_parent._healthComponent.SubtractSpecialBarValue(_parent.ChargesAmountInFullBar);
 
-		_dashVelocity = direction.Normalized() * DashForce;
+			_dashVelocity = direction.Normalized() * DashForce;
+		}
+
 	}
 
 	public void StartCharge()
@@ -128,6 +118,6 @@ public partial class MoveComponent : Node
 
 	public void _DashCollisionLayer()
 	{
-		
+
 	}
 }

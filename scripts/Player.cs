@@ -10,6 +10,8 @@ public partial class Player : Character
 
 	public override void _PhysicsProcess(double delta)
 	{
+		//_healthComponent.AddSpecialBarValue(delta);
+
 		Vector2 direction = Input.GetVector(
 			"plr_left", "plr_right",
 			"plr_up", "plr_down"

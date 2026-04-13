@@ -35,7 +35,7 @@ script = ExtResource("1_rd3kb")
 layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0
-offset_right = 96.0
+offset_right = 287.0
 offset_bottom = 96.0
 texture = ExtResource("2_y5tme")
 
@@ -53,7 +53,7 @@ offset_left = 67.0
 offset_top = 28.0
 offset_right = 271.0
 offset_bottom = 52.0
-value = 40.0
+step = 0.01
 texture_progress = SubResource("AtlasTexture_18exe")
 
 [node name="CenterContainer" type="CenterContainer" parent="TextureRect" unique_id=1124547239]
@@ -61,10 +61,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.29500002
 anchor_bottom = 1.0
-offset_left = 14.0
-offset_top = 18.0
-offset_right = -11.945007
-offset_bottom = -22.0
+offset_left = 8.0
+offset_top = 20.0
+offset_right = -7.9450073
+offset_bottom = -20.0
 
 [node name="EnemiesLeftLabel" type="Label" parent="TextureRect/CenterContainer" unique_id=684202143]
 layout_mode = 2
@@ -72,7 +72,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 3
 theme_override_constants/shadow_outline_size = 4
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "20/20"
 
 [node name="MapCenterContainer" type="CenterContainer" parent="." unique_id=2045795885]

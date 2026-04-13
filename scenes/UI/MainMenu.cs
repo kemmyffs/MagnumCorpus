@@ -18,5 +18,6 @@ public partial class MainMenu : Control
 	public void _on_button_button_up()
 	{
 		Console.WriteLine("Zmack");
+		GetTree().ChangeSceneToFile("res://objects/rooms/dungeon_generator.tscn");
 	}
 }

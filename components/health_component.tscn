@@ -47,7 +47,7 @@ offset_left = -12.0
 offset_top = 19.0
 offset_right = 12.0
 offset_bottom = 22.0
-value = 50.0
+step = 0.01
 texture_progress = SubResource("AtlasTexture_m8208")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1219289255]
