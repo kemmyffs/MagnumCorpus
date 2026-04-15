@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class Hud : Control
@@ -10,6 +11,8 @@ public partial class Hud : Control
 	private Character PlayerParent;
 	public TextureProgressBar HealthBar;
 	public TextureProgressBar SpecialBar;
+	
+	public DialogueManager dialogueManager;
 
 	public override void _Ready()
 	{
@@ -18,6 +21,15 @@ public partial class Hud : Control
 		PlayerParent = GetParent<CanvasLayer>().GetParent<Character>();
 		HealthBar = GetNode<TextureProgressBar>("TextureRect//HealthBar"); //TODO
 		SpecialBar = GetNode<TextureProgressBar>("TextureRect//SpecialBar"); //TODO
+
+		if(GetTree().CurrentScene.Name != "TutorialLevel")
+		{
+			dialogueManager = GetNode<DialogueManager>("DialogManager");
+			dialogueManager.DisplayDialogue();
+		} else
+		{
+			GetNode<DialogueManager>("DialogManager").Hide();
+		}
 	}
 
 	public async void UpdateEnemyCounter()

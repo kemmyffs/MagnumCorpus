@@ -29,7 +29,6 @@ public partial class MoveComponent : Node
 
 	public override void _PhysicsProcess(double delta)
 	{
-
 		float d = (float)delta;
 		Vector2 velocity = _parent.Velocity;
 

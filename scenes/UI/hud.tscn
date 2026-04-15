@@ -93,7 +93,6 @@ anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 script = ExtResource("5_cg4gw")
-TypeSpeed = 20.0
 
 [node name="DialogBarContainer" type="CenterContainer" parent="DialogManager" unique_id=184709016]
 layout_mode = 0
@@ -116,5 +115,4 @@ theme_override_constants/line_separation = 16
 theme_override_constants/outline_size = 8
 theme_override_fonts/normal_font = ExtResource("7_xh8q5")
 theme_override_font_sizes/normal_font_size = 38
-text = "You think you're ready to take on the ghosts?"
 fit_content = true

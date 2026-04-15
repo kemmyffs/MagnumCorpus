@@ -112,7 +112,7 @@
   "tutorial_22": {
     "text": "Anyway, let's move on…",
     "speed": "normal",
-    "continueOn": "LastRoomEntered"
+    "continueOn": "Input"
   },
   "tutorial_23": {
     "text": "Notice how the ground and walls have a certain color?",
@@ -152,7 +152,7 @@
   "tutorial_30": {
     "text": "You think you're ready to take on the ghosts?",
     "speed": "normal",
-    "continueOn": "ResponseWindow"
+    "continueOn": "Input"
   },
   "tutorial_31": {
     "text": "Yeah I bet you are!",

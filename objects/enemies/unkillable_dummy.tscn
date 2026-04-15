@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://0bplylumwhvo"]
+
+[ext_resource type="Texture2D" uid="uid://b6jxa1jjttsnd" path="res://textures/assets/Training Dummy Sprite Sheet.png" id="1_w08dc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lxghl"]
+radius = 11.0
+
+[node name="UnkillableDummy" type="CharacterBody2D" unique_id=1890307166]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=587669688]
+texture = ExtResource("1_w08dc")
+hframes = 8
+vframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=908602794]
+shape = SubResource("CircleShape2D_lxghl")

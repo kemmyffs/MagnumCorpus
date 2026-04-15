@@ -21,44 +21,84 @@ public partial class DialogueManager : Control
     private Dictionary<string, DialogEntry> tutorialData = new();
     private int currentIndex = 0;
     public RichTextLabel DialogueLabel;
+    private string continueCondition;
     private bool skipTyping = false;
     private bool isTyping = false;
-    private bool canBeSkipped = true;
+    private bool canContinueWithInput = true;
 
+    private bool enemyDied = false;
+    private bool enemyShouldveDied = false;
+    private bool secondRoomEntered = false;
+    private bool lastRoomEntered=false;
 
     public override void _Ready()
     {
         DialogueLabel = GetNode<RichTextLabel>("DialogLabel");
         LoadJson("res://customResources/tutorialDialogue.json");
-        DisplayDialogue();
+
     }
 
     public override void _Input(InputEvent @event)
     {
+        if(!Visible) return;
         if (Input.IsActionJustPressed("ui_accept"))
         {
             if (isTyping)
             {
                 skipTyping = true;
+                return;
             }
-            else if (canBeSkipped)
+
+            if (canContinueWithInput)
             {
                 DisplayDialogue();
             }
         }
     }
 
+    public override void _Process(double delta)
+    {
+
+        if(ContinueEventTriggered(continueCondition))
+        {
+            DisplayDialogue();
+        }
+
+        
+    }
+
+
+    private bool ContinueEventTriggered(string condition)
+    {       
+            switch (condition)
+            {
+                case "Attack": return Input.IsActionJustPressed("plr_attack");
+                case "EnemyFailedDeath": return enemyShouldveDied;
+                case "EnemyDeath": return enemyDied;
+                case "SecondRoomEntered": return secondRoomEntered;
+                case "TriedDashing": return Input.IsActionJustReleased("plr_charge");
+                case "LastRoomEntered": return lastRoomEntered;
+                case "ResponseWindow": return false;
+            }
+            return false;
+
+    }
+
+
     public async void DisplayDialogue()
     {
         if (isTyping) return;
+        if(currentIndex == 33) {
+            GetTree().ChangeSceneToFile("res://scenes/ui/main_menu.tscn");
+        }
 
         var entry = LoadEntry("res://customResources/tutorialDialogue.json", currentIndex);
 
         if (entry != null)
         {
             isTyping = true;
-            canBeSkipped = entry.continueOn == "Input";
-
+            canContinueWithInput = entry.continueOn == "Input";
+            continueCondition = entry.continueOn;
             string text = ReplaceKeys(entry.text);
 
             await TypeText(text, entry.speed);
@@ -155,5 +195,22 @@ public partial class DialogueManager : Control
         };
     }
 
+
+
+    //signal recieving
+    public void _on_training_dummy_on_false_death()
+    {
+        enemyShouldveDied = true;
+    }
+
+    public void _on_training_dummy_on_death()
+    {
+        enemyDied = true;
+    }
+
+    public void _on_area_2d_body_entered(Node2D body)
+    {
+        secondRoomEntered = true;
+    }
 
 }

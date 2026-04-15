@@ -49,15 +49,15 @@ public partial class HealthComponent : Node2D
 	}
 
 	public override void _Process(double delta)
-{
-    if (SpecialBar.Value < SpecialBarMaxValue)
-    {
-        double amountToAdd = (SpecialBarMaxValue / SpecialBarRechargeTime) * delta;
+	{
+		if (SpecialBar.Value < SpecialBarMaxValue)
+		{
+			double amountToAdd = (SpecialBarMaxValue / SpecialBarRechargeTime) * delta;
 
-        // 2. Apply and Clamp
-        SpecialBar.Value = Mathf.Clamp(SpecialBar.Value + amountToAdd, 0, SpecialBarMaxValue);
-    }
-}
+			// 2. Apply and Clamp
+			SpecialBar.Value = Mathf.Clamp(SpecialBar.Value + amountToAdd, 0, SpecialBarMaxValue);
+		}
+	}
 
 
 	public void Damage(int dmg)
@@ -93,9 +93,9 @@ public partial class HealthComponent : Node2D
 		}
 	}
 
-    internal bool hasEnoughSpecial(float singleActionCost)
-    {
-        return SpecialBar.Value > SpecialBar.MaxValue/singleActionCost;
-    }
+	internal bool hasEnoughSpecial(float singleActionCost)
+	{
+		return SpecialBar.Value > SpecialBar.MaxValue / singleActionCost;
+	}
 
 }
