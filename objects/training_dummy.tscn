@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ftu2g2b75tyw"]
 
+[ext_resource type="Script" uid="uid://bt1ycyr5qlmd" path="res://scripts/TrainingDummy.cs" id="1_avl7w"]
 [ext_resource type="Texture2D" uid="uid://b6jxa1jjttsnd" path="res://textures/assets/Training Dummy Sprite Sheet.png" id="1_ocgie"]
-[ext_resource type="Script" uid="uid://cdl0yiy8vdyxh" path="res://objects/TrainingDummy.cs" id="1_pnt1b"]
 [ext_resource type="PackedScene" uid="uid://c4vu8ia4v14x1" path="res://components/health_component.tscn" id="2_uynn4"]
 [ext_resource type="PackedScene" uid="uid://xsadykqyqnkb" path="res://components/move_component.tscn" id="4_avl7w"]
 
@@ -9,7 +9,7 @@
 radius = 11.0
 
 [node name="TrainingDummy" type="CharacterBody2D" unique_id=1889153279]
-script = ExtResource("1_pnt1b")
+script = ExtResource("1_avl7w")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1656794349]
 texture = ExtResource("1_ocgie")

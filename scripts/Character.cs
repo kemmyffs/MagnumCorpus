@@ -18,11 +18,13 @@ public partial class Character : CharacterBody2D
 
     public override void _Ready()
     {
-        _moveComponent = GetNode<MoveComponent>("MoveComponent");
-        _healthComponent = GetNode<HealthComponent>("HealthComponent");
-        _attackComponent = GetNode<AttackComponent>("AttackComponent");
-        
-        MoveCollisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
+        try
+        {
+            _moveComponent = GetNode<MoveComponent>("MoveComponent");
+            _healthComponent = GetNode<HealthComponent>("HealthComponent");
+            _attackComponent = GetNode<AttackComponent>("AttackComponent");
+            MoveCollisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
+        } catch (System.Exception) { GD.Print("cau");}   
     }
 
     public virtual void Die()

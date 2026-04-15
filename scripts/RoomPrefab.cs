@@ -53,16 +53,27 @@ public partial class RoomPrefab : Node2D
 
 	public void GenerateEnemies(int count)
 	{
-		Random rng = new Random();
 		for (int i = 0; i < count; i++)
 		{
-			PackedScene enemyScene = GD.Load<PackedScene>("objects/enemies/testEnemy.tscn");
-			Enemy enemyInstance = (Enemy) enemyScene.Instantiate();
-			enemyInstance.GlobalPosition = new Vector2(rng.Next(32,361), rng.Next(32,361));
-			AddChild(enemyInstance);
-			enemyInstance.SetTarget();
+			SpawnEnemy();
 		}
 	}
+
+	public void SpawnEnemy()
+	{
+		Random rng = new Random();
+		PackedScene enemyScene = GD.Load<PackedScene>("objects/enemies/testEnemy.tscn");
+		Enemy enemyInstance = (Enemy) enemyScene.Instantiate();
+		enemyInstance.GlobalPosition = new Vector2(rng.Next(32,361), rng.Next(32,361));
+		AddChild(enemyInstance);
+		enemyInstance.SetTarget();
+	}
+
+	public void SpawnEnemy(GlobalScript.EnemyTypes enemyType)
+	{
+		
+	}
+
 	
 	public void SetDoor(Vector2 side, bool open)
 	{

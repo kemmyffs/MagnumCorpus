@@ -23,19 +23,23 @@ public partial class Player : Character
 			LastDirection = direction;
 
 		if (Input.IsActionPressed("plr_charge"))
-			_moveComponent.StartCharge();
-
+			if (_healthComponent.hasEnoughSpecial(ChargesAmountInFullBar))
+			{
+				_moveComponent.StartCharge();
+			}
 		if (Input.IsActionJustReleased("plr_charge"))
 		{
+			
 			_moveComponent.StopCharge();
 			_moveComponent.Dash(LastDirection);
+			
 		}
 
 		if (Input.IsActionJustPressed("plr_attack"))
 		{
-			if(_attackComponent.CanAttack) _attackComponent.Attack(LastDirection);
+			if (_attackComponent.CanAttack) _attackComponent.Attack(LastDirection);
 		}
-		
+
 		if (Input.IsKeyPressed(Key.Escape))
 		{
 			GetTree().Quit();
@@ -47,8 +51,8 @@ public partial class Player : Character
 	{
 		var grid = godotGrid.ToArray<bool>();
 		Hud hudnode = GetNode<Hud>("CanvasLayer//HUD");
-        hudnode.GenerateMinimap(grid, x, y, height);
-		
+		hudnode.GenerateMinimap(grid, x, y, height);
+
 		//TextureRect mapTextureRect = GetNode<TextureRect>("MapTextureRect");
 	}
 

@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dwiqptgxq4xxu" path="res://textures/programmerArt/TopHud.png" id="2_y5tme"]
 [ext_resource type="Texture2D" uid="uid://01wkc5dtpo5r" path="res://textures/programmerArt/plrBars.png" id="3_18exe"]
 [ext_resource type="Texture2D" uid="uid://7po0xajyijrm" path="res://textures/programmerArt/minimap.png" id="3_y5tme"]
+[ext_resource type="Script" uid="uid://cd1t4i30giyh0" path="res://scripts/DialogueManager.cs" id="5_cg4gw"]
+[ext_resource type="Texture2D" uid="uid://cxdbv5f34ri2p" path="res://textures/programmerArt/dialogBackground.png" id="6_xh8q5"]
+[ext_resource type="FontFile" uid="uid://dwp0wqjwouedd" path="res://fonts/dogicapixel.ttf" id="7_xh8q5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0jeyp"]
 atlas = ExtResource("3_18exe")
@@ -73,7 +76,6 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 3
 theme_override_constants/shadow_outline_size = 4
 theme_override_font_sizes/font_size = 30
-text = "20/20"
 
 [node name="MapCenterContainer" type="CenterContainer" parent="." unique_id=2045795885]
 layout_mode = 0
@@ -85,3 +87,34 @@ offset_bottom = 272.0
 [node name="TileMapLayer" type="TileMapLayer" parent="MapCenterContainer" unique_id=253969346]
 scale = Vector2(3, 3)
 tile_set = SubResource("TileSet_0jeyp")
+
+[node name="DialogManager" type="Control" parent="." unique_id=72464728]
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("5_cg4gw")
+TypeSpeed = 20.0
+
+[node name="DialogBarContainer" type="CenterContainer" parent="DialogManager" unique_id=184709016]
+layout_mode = 0
+offset_top = 440.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="DialogBar" type="TextureRect" parent="DialogManager/DialogBarContainer" unique_id=1055131305]
+custom_minimum_size = Vector2(1152, 208)
+layout_mode = 2
+texture = ExtResource("6_xh8q5")
+
+[node name="DialogLabel" type="RichTextLabel" parent="DialogManager" unique_id=199931795]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 472.0
+offset_right = 1088.0
+offset_bottom = 624.0
+theme_override_constants/line_separation = 16
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("7_xh8q5")
+theme_override_font_sizes/normal_font_size = 38
+text = "You think you're ready to take on the ghosts?"
+fit_content = true

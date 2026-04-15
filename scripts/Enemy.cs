@@ -28,7 +28,10 @@ public partial class Enemy : Character
 		{
 			Target = GetParent().GetParent().GetParent().GetNode<Player>("Player");
 		}
-		catch (System.NullReferenceException) { }
+		catch (System.NullReferenceException)
+		{
+			Target =  null;
+		}
 	}
 
     public override void Die()

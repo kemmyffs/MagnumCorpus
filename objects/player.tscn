@@ -15,7 +15,6 @@ height = 26.0
 motion_mode = 1
 script = ExtResource("1_ykyjo")
 BaseSpeed = 150.0
-ChargesAmountInFullBar = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1456656584]
 texture = ExtResource("1_eqqp1")
@@ -28,6 +27,7 @@ Damage = 5
 
 [node name="HealthComponent" parent="." unique_id=1008080549 instance=ExtResource("20_iqfnf")]
 MaxHealth = 50
+SpecialBarRechargeTime = 15.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=643263794]
 

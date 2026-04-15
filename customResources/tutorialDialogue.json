@@ -1,0 +1,167 @@
+{
+  "tutorial_0": {
+    "text": "Welcome to\nMAGNUM CORPUS",
+    "speed": "slow",
+    "continueOn": "Input"
+  },
+  "tutorial_1": {
+    "text": "Use {upKey}, {downKey}, {leftKey} and {rightKey} to move",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_2": {
+    "text": "In order to kill an enemy, you need to kill it!",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_3": {
+    "text": "Try to kill this dummy",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_4": {
+    "text": "Oh… Right… You don't know how…",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_5": {
+    "text": "Try pressing {attackKey}",
+    "speed": "normal",
+    "continueOn": "Attack"
+  },
+  "tutorial_6": {
+    "text": "Now you've got it! Attack that dude a few more times, I'm sure he'll die eventually",
+    "speed": "normal",
+    "continueOn": "EnemyFailedDeath"
+  },
+  "tutorial_7": {
+    "text": "What's that? Oh… Sorry, I forgot to add a health check!",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_8": {
+    "text": "Let me fix this…",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_9": {
+    "text": "There we go! Try hitting him again!",
+    "speed": "normal",
+    "continueOn": "EnemyDeath"
+  },
+  "tutorial_10": {
+    "text": "Great! You now know how to kill enemies!!! I'm proud of you already",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_11": {
+    "text": "Let's move on. Go into the next room",
+    "speed": "normal",
+    "continueOn": "SecondRoomEntered"
+  },
+  "tutorial_12": {
+    "text": "This one's unkillable. Don't even bother, he literally CANNOT DIE",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_13": {
+    "text": "But, you can try something else with him…",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_14": {
+    "text": "When you hold down {chargeKey}, you'll charge a Dash move!",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_15": {
+    "text": "Dashing allows you to move through enemies without taking damage!",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_16": {
+    "text": "Try it out a few times!",
+    "speed": "normal",
+    "continueOn": "TriedDashing"
+  },
+  "tutorial_17": {
+    "text": "You may have noticed that the blue bar under your Health changes when you charge",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_18": {
+    "text": "That blue bar is your Special bar!",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_19": {
+    "text": "Each charge consumes some Special energy",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_20": {
+    "text": "Make sure to pay attention to it!",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_21": {
+    "text": "You won't be able to charge if you don't have enough!",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_22": {
+    "text": "Anyway, let's move on…",
+    "speed": "normal",
+    "continueOn": "LastRoomEntered"
+  },
+  "tutorial_23": {
+    "text": "Notice how the ground and walls have a certain color?",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_24": {
+    "text": "That's the levels FLAVOR",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_25": {
+    "text": "Each flavor gives both you and your enemies certain effects",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_26": {
+    "text": "You'll find them listed every time you enter a level",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_27": {
+    "text": "Your goal for each floor is to kill all enemies",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_28": {
+    "text": "After that, you move to the next floor!",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_29": {
+    "text": "And… That's it!",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_30": {
+    "text": "You think you're ready to take on the ghosts?",
+    "speed": "normal",
+    "continueOn": "ResponseWindow"
+  },
+  "tutorial_31": {
+    "text": "Yeah I bet you are!",
+    "speed": "normal",
+    "continueOn": "Input"
+  },
+  "tutorial_32": {
+    "text": "Good luck!",
+    "speed": "normal",
+    "continueOn": "Input"
+  }
+}
