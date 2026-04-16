@@ -66,7 +66,6 @@ public partial class RoomPrefab : Node2D
 		Enemy enemyInstance = (Enemy) enemyScene.Instantiate();
 		enemyInstance.GlobalPosition = new Vector2(rng.Next(32,361), rng.Next(32,361));
 		AddChild(enemyInstance);
-		enemyInstance.SetTarget();
 	}
 
 	public void SpawnEnemy(GlobalScript.EnemyTypes enemyType)

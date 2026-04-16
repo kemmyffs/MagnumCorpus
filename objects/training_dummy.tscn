@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ftu2g2b75tyw"]
 
-[ext_resource type="Script" uid="uid://bt1ycyr5qlmd" path="res://scripts/TrainingDummy.cs" id="1_avl7w"]
+[ext_resource type="Script" uid="uid://c4gads3y3tdje" path="res://scripts/Enemies/TrainingDummy.cs" id="1_avl7w"]
 [ext_resource type="Texture2D" uid="uid://b6jxa1jjttsnd" path="res://textures/assets/Training Dummy Sprite Sheet.png" id="1_ocgie"]
 [ext_resource type="PackedScene" uid="uid://c4vu8ia4v14x1" path="res://components/health_component.tscn" id="2_uynn4"]
 [ext_resource type="PackedScene" uid="uid://xsadykqyqnkb" path="res://components/move_component.tscn" id="4_avl7w"]
@@ -20,5 +20,6 @@ vframes = 3
 shape = SubResource("CircleShape2D_uynn4")
 
 [node name="HealthComponent" parent="." unique_id=1008080549 instance=ExtResource("2_uynn4")]
+MaxHealth = 50
 
 [node name="MoveComponent" parent="." unique_id=1936515493 instance=ExtResource("4_avl7w")]

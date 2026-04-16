@@ -1,6 +1,7 @@
 using System;
 using Godot;
 
+[Icon("res://customResources//iconPack/32x32/window_frame_show.png")]
 public partial class Hud : Control
 {
 
@@ -22,13 +23,18 @@ public partial class Hud : Control
 		HealthBar = GetNode<TextureProgressBar>("TextureRect//HealthBar"); //TODO
 		SpecialBar = GetNode<TextureProgressBar>("TextureRect//SpecialBar"); //TODO
 
-		if(GetTree().CurrentScene.Name != "TutorialLevel")
+		Console.WriteLine(GetTree().CurrentScene.Name);
+		GD.Print(GetTree().CurrentScene.Name);
+		if(GetTree().CurrentScene.Name == "TutorialMap")
 		{
+			GetNode<DialogueManager>("DialogManager").Visible = true;
 			dialogueManager = GetNode<DialogueManager>("DialogManager");
+			dialogueManager.init();
 			dialogueManager.DisplayDialogue();
 		} else
 		{
-			GetNode<DialogueManager>("DialogManager").Hide();
+			GetNode<DialogueManager>("DialogManager").Visible = false;
+			GetNode<DialogueManager>("DialogManager").QueueFree();
 		}
 	}
 

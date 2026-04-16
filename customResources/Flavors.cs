@@ -1,6 +1,12 @@
 using System.Collections.Generic;
 using Godot;
 
+
+/*
+
+ff66fa – Borůvková
+
+*/
 namespace Flavors
 {
     public partial class Flavor : Resource

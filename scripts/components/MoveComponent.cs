@@ -1,6 +1,6 @@
 using System;
 using Godot;
-
+[Icon("res://customResources//iconPack/32x32/arrow_out.png")]
 public partial class MoveComponent : Node
 {
 	private Character _parent;

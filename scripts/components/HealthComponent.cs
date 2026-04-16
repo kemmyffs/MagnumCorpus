@@ -2,6 +2,8 @@ using Godot;
 using System;
 using System.Diagnostics;
 
+[Icon("res://customResources//iconPack/32x32/heart.png")]
+
 public partial class HealthComponent : Node2D
 {
 	private Character _parent;
@@ -17,7 +19,6 @@ public partial class HealthComponent : Node2D
 	public override void _Ready()
 	{
 		_parent = GetParent<Character>();
-		MaxHealth = _parent.MaxHealth;
 		Hurtbox = GetNode<Area2D>("Hurtbox");
 		Console.WriteLine($"RechargeTime: {SpecialBarRechargeTime}");
 

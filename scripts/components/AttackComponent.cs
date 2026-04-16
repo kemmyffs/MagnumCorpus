@@ -2,6 +2,8 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
+[Icon("res://customResources//iconPack/32x32/sword.png")]
+
 public partial class AttackComponent : Node2D
 {
 	[Export] public int AttackOffset;
@@ -38,7 +40,7 @@ public partial class AttackComponent : Node2D
 		}
 	}
 
-	public async Task Attack(Vector2 direction)
+	public async void Attack(Vector2 direction)
 	{
 		CanAttack = false;
 		Vector2 attackDir = direction.Normalized();

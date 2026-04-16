@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dr5asx1o18kp6"]
+
+[ext_resource type="Script" uid="uid://cu8lqte38o46w" path="res://scripts/components/ChaseComponent.cs" id="1_rucfr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_laed2"]
+radius = 120.0
+
+[node name="ChaseComponent" type="Node2D" unique_id=861140757]
+script = ExtResource("1_rucfr")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=507485469]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1197296071]
+shape = SubResource("CircleShape2D_laed2")
+
+[connection signal="body_entered" from="Area2D" to="." method="Area2DBodyEntered"]
+[connection signal="body_exited" from="Area2D" to="." method="Area2DBodyExited"]

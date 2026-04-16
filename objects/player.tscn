@@ -23,7 +23,7 @@ hframes = 8
 [node name="MoveComponent" parent="." unique_id=1936515493 instance=ExtResource("19_2sux5")]
 
 [node name="AttackComponent" parent="." unique_id=977282940 instance=ExtResource("4_cyhxw")]
-Damage = 5
+Damage = 10
 
 [node name="HealthComponent" parent="." unique_id=1008080549 instance=ExtResource("20_iqfnf")]
 MaxHealth = 50

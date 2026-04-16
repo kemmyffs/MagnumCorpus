@@ -30,12 +30,10 @@ public partial class DialogueManager : Control
     private bool enemyShouldveDied = false;
     private bool secondRoomEntered = false;
     private bool lastRoomEntered=false;
-
-    public override void _Ready()
+    public void init()
     {
         DialogueLabel = GetNode<RichTextLabel>("DialogLabel");
         LoadJson("res://customResources/tutorialDialogue.json");
-
     }
 
     public override void _Input(InputEvent @event)
