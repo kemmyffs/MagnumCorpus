@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bru1t528bfnnw"]
+
+[ext_resource type="Script" uid="uid://rsu46gucwpw7" path="res://scripts/Enemies/Mouldling.cs" id="1_jdfho"]
+[ext_resource type="Texture2D" uid="uid://0qc1x40dclye" path="res://textures/programmerArt/mouldling.png" id="1_m2iwu"]
+[ext_resource type="PackedScene" uid="uid://c4vu8ia4v14x1" path="res://components/health_component.tscn" id="2_jdfho"]
+[ext_resource type="PackedScene" uid="uid://xsadykqyqnkb" path="res://components/move_component.tscn" id="3_kanyp"]
+[ext_resource type="PackedScene" uid="uid://dq7kwtmd22lm8" path="res://components/attack_component.tscn" id="4_50arw"]
+[ext_resource type="PackedScene" uid="uid://dr5asx1o18kp6" path="res://components/chase_component.tscn" id="5_8wrpm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hksnt"]
+radius = 12.0
+height = 24.0
+
+[node name="Mouldling" type="CharacterBody2D" unique_id=899155493]
+collision_layer = 33
+collision_mask = 33
+motion_mode = 1
+script = ExtResource("1_jdfho")
+ChaseRadius = 120
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1395073809]
+texture = ExtResource("1_m2iwu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1092338224]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_hksnt")
+
+[node name="HealthComponent" parent="." unique_id=1008080549 instance=ExtResource("2_jdfho")]
+position = Vector2(0, 2)
+MaxHealth = 50
+
+[node name="MoveComponent" parent="." unique_id=1936515493 instance=ExtResource("3_kanyp")]
+DashForce = 0.0
+DashDecay = 0.0
+Acceleration = 500.0
+Friction = 500.0
+ChargeFriction = 0.0
+
+[node name="AttackComponent" parent="." unique_id=977282940 instance=ExtResource("4_50arw")]
+
+[node name="ChaseComponent" parent="." unique_id=861140757 instance=ExtResource("5_8wrpm")]
+
+[editable path="HealthComponent"]

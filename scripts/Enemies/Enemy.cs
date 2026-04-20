@@ -24,7 +24,8 @@ public partial class Enemy : Character
 	}
 	public override void _PhysicsProcess(double delta)
 	{
-		if(!IsInstanceValid(Target) || Target == null) return;
+		if(!IsInstanceValid(Target)) return;
+		if(Target == null) return;
 
 		Vector2 direction = (Target.GlobalPosition - GlobalPosition).Normalized();
 		
