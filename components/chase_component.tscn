@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cu8lqte38o46w" path="res://scripts/components/ChaseComponent.cs" id="1_rucfr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_laed2"]
-radius = 120.0
+radius = 600.0
 
 [node name="ChaseComponent" type="Node2D" unique_id=861140757]
 script = ExtResource("1_rucfr")

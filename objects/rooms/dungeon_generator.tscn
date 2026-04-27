@@ -8,7 +8,7 @@
 [node name="DungeonGenerator" type="Node2D" unique_id=1318291132]
 script = ExtResource("1_wnh5j")
 WorldSize = Vector2i(5, 5)
-NumberOfRooms = 10
+NumberOfRooms = 5
 RoomMapIconPrefab = ExtResource("2_u0h3c")
 RoomPrefab = ExtResource("2_1i4yp")
 RoomTileCount = 26

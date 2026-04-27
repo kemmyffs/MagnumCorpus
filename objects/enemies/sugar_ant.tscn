@@ -14,7 +14,7 @@ size = Vector2(16, 7)
 collision_layer = 33
 collision_mask = 33
 script = ExtResource("1_aus4a")
-ChaseRadius = 800
+ChaseRadius = 100
 ChargesAmountInFullBar = null
 
 [node name="HealthComponent" parent="." unique_id=1008080549 instance=ExtResource("1_8vr46")]
@@ -35,3 +35,5 @@ shape = SubResource("RectangleShape2D_aus4a")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=263602855]
 texture = ExtResource("5_py0p6")
+
+[editable path="ChaseComponent"]
