@@ -82,7 +82,6 @@ public partial class MoveComponent : Component
 		if (combined.Length() > BaseSpeed + _dashVelocity.Length())
 			combined = combined.Normalized() * (BaseSpeed + _dashVelocity.Length());
 		velocity = combined;
-		//
 
 		Parent.Velocity = velocity;
 

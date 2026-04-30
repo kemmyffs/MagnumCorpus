@@ -11,7 +11,6 @@ public partial class Enemy : Character
 	{
 		base._Ready();
 		playerNode = GetParent().GetParent().GetNode<Player>("%Player");
-		//GetTree().GetFirstNodeInGroup()
 		Connect("JustDied", new Callable(playerNode.GetNode<Hud>("CanvasLayer/HUD"), "OnEnemyDeath"));
 
 		if (HasNode("ChaseComponent"))

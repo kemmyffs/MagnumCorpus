@@ -11,8 +11,6 @@ public partial class EnemyCounterProgress : ColorRect
 	{
 		smat = (ShaderMaterial)Material;
 	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		if(Additive > 0)
