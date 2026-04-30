@@ -46,8 +46,6 @@ public partial class EnemyRoot : Node2D
 		AddChild(enemyInstance);
 		
 		enemyInstance.GlobalPosition = globalPosition;
-		Console.WriteLine($"Spawned enemy: {enemyInstance}");
-		Console.WriteLine($"EnemyRoot global pos: {enemyInstance.GlobalPosition}");
 	}
 
 	private GlobalScript.EnemyTypes GetRandomEnemyType()

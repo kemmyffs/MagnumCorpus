@@ -19,7 +19,6 @@ public partial class HealthComponent : Component
 	{
 		base._Ready();
 		Hurtbox = GetNode<Area2D>("Hurtbox");
-		Console.WriteLine($"RechargeTime: {SpecialBarRechargeTime}");
 
 		Hurtbox.AreaEntered += OnAreaEntered;
 
