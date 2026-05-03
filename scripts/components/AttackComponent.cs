@@ -35,13 +35,9 @@ public partial class AttackComponent : Component
 
 		if (AttackType == GlobalScript.AttackTypes.Touch)
 		{
-			await ToSignal(Parent, Node.SignalName.Ready);
-
-			Node a = Parent.MoveCollisionShape.Duplicate();
-			HitboxShape.ReplaceBy(a);
-			a.QueueFree();
 			HitboxShape.Disabled = false; //vždycky aktivní
 			_attackProcess = ProcessConsistentAttacks;
+			//ReshapeHitbox();
 		}
 		else
 		{
@@ -49,6 +45,12 @@ public partial class AttackComponent : Component
 			HitboxShape.Disabled = true;
 			_attackProcess = ProcessActivationAttacks;
 		}
+	}
+
+	private async Task ReshapeHitbox()
+	{
+		await ToSignal(Parent, Node.SignalName.Ready);
+		HitboxShape.Shape = ShapeManipulator.CopyExpandedShape(Parent.MoveCollisionShape.Shape);
 	}
 
 	public override void _Process(double delta)

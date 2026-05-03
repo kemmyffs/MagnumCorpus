@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 [Icon("res://customResources//iconPack/32x32/heart.png")]
 
@@ -34,6 +35,8 @@ public partial class HealthComponent : Component
 		{
 			HealthBar = GetNode<TextureProgressBar>("HealthBar");
 			SpecialBar = GetNode<TextureProgressBar>("SpecialBar");
+
+			//ReshapeHurtboxAsync();
 		}
 
 		HealthBar.MaxValue = MaxHealth;
@@ -104,4 +107,13 @@ public partial class HealthComponent : Component
 		return SpecialBar.Value > SpecialBar.MaxValue / singleActionCost;
 	}
 
+
+	private async Task ReshapeHurtboxAsync()
+	{
+		if (Team == GlobalScript.Team.Enemy)
+		{
+			await ToSignal(Parent, Node.SignalName.Ready);
+			Hurtbox.GetNode<CollisionShape2D>("CollisionShape2D").Shape = ShapeManipulator.CopyExpandedShape(Parent.MoveCollisionShape.Shape);
+		}
+	}
 }

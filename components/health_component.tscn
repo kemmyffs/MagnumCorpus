@@ -22,6 +22,7 @@ atlas = SubResource("CompressedTexture2D_awnif")
 region = Rect2(28, 6, 24, 2)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tsl15"]
+radius = 15.0
 
 [node name="HealthComponent" type="Node2D" unique_id=1008080549]
 script = ExtResource("1_t2tvt")

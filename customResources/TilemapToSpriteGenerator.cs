@@ -44,8 +44,7 @@ public static partial class TilemapToSpriteGenerator
         resultSprite.Texture = finalTexture;
 
         // Adjust the sprite position to match where the tilemap was
-        //TODO opravit???
-        //resultSprite.GlobalPosition = layer.MapToLocal(rect.Position) + (Vector2)(rect.Size * tileSize) / 2.0f;
+        resultSprite.GlobalPosition = layer.MapToLocal(rect.Position) + (Vector2)(rect.Size * tileSize) / 2.0f;
 
         layer.QueueFree();
 

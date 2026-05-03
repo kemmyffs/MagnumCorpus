@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://dq7kwtmd22lm8" path="res://components/attack_component.tscn" id="4_50arw"]
 [ext_resource type="PackedScene" uid="uid://dr5asx1o18kp6" path="res://components/chase_component.tscn" id="5_8wrpm"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jdfho"]
+radius = 15.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hksnt"]
 radius = 12.0
 height = 24.0
@@ -20,15 +23,26 @@ ChaseRadius = 100
 BaseSpeed = 100.0
 Team = 1
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1395073809]
+texture = ExtResource("1_m2iwu")
+
 [node name="HealthComponent" parent="." unique_id=1008080549 instance=ExtResource("2_jdfho")]
 position = Vector2(0, 2)
 MaxHealth = 50
+
+[node name="CollisionShape2D" parent="HealthComponent/Hurtbox" parent_id_path=PackedInt32Array(1008080549, 1219289255) index="0" unique_id=282062039]
+position = Vector2(0, 1)
 
 [node name="AttackComponent" parent="." unique_id=977282940 instance=ExtResource("4_50arw")]
 AttackType = 1
 Damage = 5
 
+[node name="CollisionShape2D" parent="AttackComponent/Hitbox" parent_id_path=PackedInt32Array(977282940, 972727934) index="0" unique_id=1026052232]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_jdfho")
+
 [node name="MoveComponent" parent="." unique_id=1936515493 instance=ExtResource("3_kanyp")]
+visible = false
 Friction = 100.0
 ChargeFriction = 0.0
 
@@ -38,7 +52,5 @@ shape = SubResource("CapsuleShape2D_hksnt")
 
 [node name="ChaseComponent" parent="." unique_id=861140757 instance=ExtResource("5_8wrpm")]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1395073809]
-texture = ExtResource("1_m2iwu")
-
 [editable path="HealthComponent"]
+[editable path="AttackComponent"]

@@ -7,8 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://dq7kwtmd22lm8" path="res://components/attack_component.tscn" id="4_rodjt"]
 [ext_resource type="Texture2D" uid="uid://digxnqilqgt0n" path="res://textures/programmerArt/ant.png" id="5_py0p6"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hi7k"]
+size = Vector2(18, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rodjt"]
+resource_local_to_scene = true
+size = Vector2(18, 16)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aus4a"]
-size = Vector2(16, 7)
+size = Vector2(16, 11)
 
 [node name="SugarAnt" type="CharacterBody2D" unique_id=894038355]
 collision_layer = 33
@@ -19,9 +26,18 @@ Team = 1
 
 [node name="HealthComponent" parent="." unique_id=1008080549 instance=ExtResource("1_8vr46")]
 MaxHealth = 1
+SpecialBarRechargeTime = 10.0
+
+[node name="CollisionShape2D" parent="HealthComponent/Hurtbox" parent_id_path=PackedInt32Array(1008080549, 1219289255) index="0" unique_id=282062039]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_0hi7k")
 
 [node name="AttackComponent" parent="." unique_id=977282940 instance=ExtResource("4_rodjt")]
 AttackType = 1
+
+[node name="CollisionShape2D" parent="AttackComponent/Hitbox" parent_id_path=PackedInt32Array(977282940, 972727934) index="0" unique_id=1026052232]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_rodjt")
 
 [node name="MoveComponent" parent="." unique_id=1936515493 instance=ExtResource("2_aus4a")]
 
@@ -34,4 +50,6 @@ shape = SubResource("RectangleShape2D_aus4a")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=263602855]
 texture = ExtResource("5_py0p6")
 
+[editable path="HealthComponent"]
+[editable path="AttackComponent"]
 [editable path="ChaseComponent"]
